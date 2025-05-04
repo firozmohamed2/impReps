@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Topic Manager</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold text-indigo-700 mb-8 text-center">
+        Topic Manager
+      </h1>
+
+      <!-- Add Topic Form -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Add New Topic</h2>
+        <div class="flex gap-4">
+          <input
+            type="text"
+            id="topicInput"
+            placeholder="Enter topic name"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <button
+            id="addTopicBtn"
+            class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-200"
+          >
+            <i class="fas fa-plus mr-2"></i>Add Topic
+          </button>
+        </div>
+      </div>
+
+      <!-- Topics List -->
+      <div id="topicsContainer" class="space-y-6">
+        <!-- Topics will be loaded here -->
+      </div>
+    </div>
+
+    <!-- Add Subtopic Modal -->
+    <div
+      id="addSubtopicModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+    >
+      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h3 class="text-xl font-semibold mb-4">
+          Add Subtopic to <span id="modalTopicName"></span>
+        </h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gray-700 mb-2">Subtopic Name</label>
+            <input
+              type="text"
+              id="subtopicNameInput"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">Link URL</label>
+            <input
+              type="text"
+              id="subtopicLinkInput"
+              placeholder="https://example.com"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2"
+              >Image (Paste from clipboard)</label
+            >
+            <div
+              class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center"
+            >
+              <div id="imagePreviewContainer" class="hidden mb-2">
+                <img
+                  id="imagePreview"
+                  src="#"
+                  alt="Preview"
+                  class="max-h-40 mx-auto"
+                />
+              </div>
+              <input
+                type="file"
+                id="imageUploadInput"
+                class="hidden"
+                accept="image/*"
+              />
+              <div id="pasteArea" class="cursor-pointer py-8">
+                <i class="fas fa-image text-3xl text-gray-400 mb-2"></i>
+                <p class="text-gray-500">
+                  Copy an image and paste here (Ctrl+V)
+                </p>
+                <p class="text-sm text-gray-400 mt-1">or click to upload</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end gap-3 pt-2">
+            <button
+              id="cancelSubtopicBtn"
+              class="px-4 py-2 text-gray-600 hover:text-gray-800"
+            >
+              Cancel
+            </button>
+            <button
+              id="saveSubtopicBtn"
+              class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-200"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="apw.js"></script>
+  </body>
+</html>
